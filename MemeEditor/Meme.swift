@@ -17,7 +17,7 @@ struct Meme{
     var image: UIImage
     var memeImage: UIImage
     
-    init(topText: String, bottomText: String, image: UIImage, memeImage: UIImage)
+  /*  init(topText: String, bottomText: String, image: UIImage, memeImage: UIImage)
     {
         self.topText = topText;
         self.bottomText = bottomText;
@@ -25,5 +25,5 @@ struct Meme{
         self.memeImage = memeImage;
         
     }
-    
+    */
 }

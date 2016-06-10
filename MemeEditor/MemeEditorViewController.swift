@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class MemeEditorViewController: UIViewController,UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     @IBOutlet weak var shareButton: UIBarButtonItem!
     @IBOutlet weak var navBar: UINavigationBar!
@@ -40,7 +40,7 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate, UINaviga
         cameraButton.enabled = UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)
         
         topTextField.text = "TOP"
-        bottomTextField.text = "Bottom"
+        bottomTextField.text = "BOTTOM"
         
         topTextField.textAlignment = .Center
         bottomTextField.textAlignment = .Center
@@ -50,7 +50,6 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate, UINaviga
         bottomTextField.defaultTextAttributes = memeTextAttributes
         shareButton.enabled = false;
         
-        // Do any additional setup after loading the view, typically from a nib.
     }
     
     @IBAction func shareAction(sender: AnyObject) {
@@ -88,27 +87,36 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate, UINaviga
         
         super.viewWillAppear(animated);
         
-        self.subscribeToKeyBoardNotifications();
+        subscribeToKeyBoardNotifications();
     }
     
     
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated);
         
-        self.unsubscribeToKeyboardNotifications();
+        unsubscribeToKeyboardNotifications();
     }
     
     @IBAction func pickAnImage(sender: AnyObject) {
         
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
-        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
+        switch(sender.tag){
+            case 0:
+                imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary;
+            case 1:
+                imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
+            default:
+                imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary;
+            
+        }
         presentViewController(imagePicker, animated: true, completion: nil)
         shareButton.enabled = true
         
         
     }
-    @IBAction func pickAmImageFromCamera(sender: AnyObject) {
+    
+   /* @IBAction func pickAmImageFromCamera(sender: AnyObject) {
         
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -117,6 +125,7 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate, UINaviga
         shareButton.enabled = true
         
     }
+    */
     
     
     @IBAction func cancel(sender: AnyObject) {
@@ -141,7 +150,10 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate, UINaviga
     
     func keyboardWillSHow(notification : NSNotification)
     {
-        self.view.frame.origin.y -= getKeyboardHeight(notification)
+        if(bottomTextField.editing){
+             view.frame.origin.y -= getKeyboardHeight(notification)
+        }
+       
         
     }
     
@@ -155,9 +167,10 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate, UINaviga
     func subscribeToKeyBoardNotifications()
     {
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillSHow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MemeEditorViewController.keyboardWillSHow(_:)), name: UIKeyboardWillShowNotification, object: nil)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(MemeEditorViewController
+            .keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
     
     func unsubscribeToKeyboardNotifications()
@@ -171,7 +184,7 @@ class ViewController: UIViewController,UIImagePickerControllerDelegate, UINaviga
     
     func keyboardWillHide(notification: NSNotification)
     {
-        self.view.frame.origin.y = 0;
+        view.frame.origin.y = 0;
     }
     
     

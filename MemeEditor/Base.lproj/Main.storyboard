@@ -9,7 +9,7 @@
         <!--Meme View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController title="Meme View Controller" id="BYZ-38-t0r" customClass="ViewController" customModule="MemeEditor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Meme View Controller" id="BYZ-38-t0r" customClass="MemeEditorViewController" customModule="MemeEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -18,32 +18,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6NL-gh-0sg">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6NL-gh-0sg">
                                 <rect key="frame" x="0.0" y="64" width="600" height="492"/>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="17K-8B-7VD">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
-                                    <barButtonItem systemItem="camera" id="rhl-Wc-0Zv">
+                                    <barButtonItem tag="1" systemItem="camera" id="rhl-Wc-0Zv">
                                         <connections>
-                                            <action selector="pickAmImageFromCamera:" destination="BYZ-38-t0r" id="c1L-fB-40H"/>
+                                            <action selector="pickAnImage:" destination="BYZ-38-t0r" id="Yet-R1-boH"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem width="197" style="plain" systemItem="fixedSpace" id="nxY-xv-agD"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="B6W-3x-YB9"/>
                                     <barButtonItem title="Image Gallery" id="KX2-9h-QvH">
                                         <connections>
                                             <action selector="pickAnImage:" destination="BYZ-38-t0r" id="eZh-3q-EC8"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="9uQ-xf-RbR"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="YZ5-20-Q7k"/>
+                                    <barButtonItem width="28" style="plain" systemItem="fixedSpace" id="rOx-Jn-ISQ"/>
                                 </items>
                             </toolbar>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" placeholder="BOTTOM" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4T1-9V-OKK" userLabel="Bottom Text Field">
-                                <rect key="frame" x="268" y="496" width="63" height="17"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="center" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" placeholder="BOTTOM" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4T1-9V-OKK" userLabel="Bottom Text Field">
+                                <rect key="frame" x="268.5" y="496" width="63" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" placeholder="TOP" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uqE-gc-lv0" userLabel="Top Text Field">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFit" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" placeholder="TOP" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uqE-gc-lv0" userLabel="Top Text Field">
                                 <rect key="frame" x="284" y="113" width="32" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" autocorrectionType="no" spellCheckingType="no" keyboardType="alphabet"/>
@@ -57,14 +58,18 @@
                             <constraint firstItem="uqE-gc-lv0" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="49" id="9ZL-5Q-cWK"/>
                             <constraint firstItem="uqE-gc-lv0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="232" id="ECt-gF-ssH"/>
                             <constraint firstAttribute="trailingMargin" secondItem="uqE-gc-lv0" secondAttribute="trailing" constant="231" id="FJ4-fd-TW7"/>
+                            <constraint firstItem="uqE-gc-lv0" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="50" id="FpD-kH-WCO"/>
                             <constraint firstItem="uqE-gc-lv0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="KnG-V9-ZrA"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4T1-9V-OKK" secondAttribute="trailing" constant="221" id="Nds-WW-WuE"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="uqE-gc-lv0" secondAttribute="trailing" constant="50" id="Pug-Gs-sVX"/>
                             <constraint firstItem="4T1-9V-OKK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="242" id="Pv8-lX-90j"/>
                             <constraint firstAttribute="trailingMargin" secondItem="6NL-gh-0sg" secondAttribute="trailing" constant="-20" id="Rqb-sV-5ns"/>
                             <constraint firstItem="6NL-gh-0sg" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Umj-DG-D05"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="4T1-9V-OKK" secondAttribute="trailing" constant="50" id="b86-Qm-Z5a"/>
                             <constraint firstAttribute="trailingMargin" secondItem="17K-8B-7VD" secondAttribute="trailing" constant="-20" id="cz2-H0-9UE"/>
                             <constraint firstItem="4T1-9V-OKK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="gt8-jI-iU4"/>
                             <constraint firstItem="17K-8B-7VD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="lsY-hq-77d"/>
+                            <constraint firstItem="4T1-9V-OKK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="50" id="tFy-sd-R6H"/>
                             <constraint firstItem="6NL-gh-0sg" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="wfN-z5-gSo"/>
                             <constraint firstItem="uqE-gc-lv0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="zYU-Wh-3q8"/>
                         </constraints>
@@ -72,8 +77,13 @@
                             <mask key="constraints">
                                 <exclude reference="ECt-gF-ssH"/>
                                 <exclude reference="FJ4-fd-TW7"/>
+                                <exclude reference="FpD-kH-WCO"/>
+                                <exclude reference="Pug-Gs-sVX"/>
+                                <exclude reference="zYU-Wh-3q8"/>
                                 <exclude reference="Nds-WW-WuE"/>
                                 <exclude reference="Pv8-lX-90j"/>
+                                <exclude reference="b86-Qm-Z5a"/>
+                                <exclude reference="tFy-sd-R6H"/>
                             </mask>
                         </variation>
                     </view>
@@ -107,7 +117,6 @@
         <!--Navigation Controller-->
         <scene sceneID="syo-j2-tLT">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="wA0-AK-fSE" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController id="7Lo-Kq-LdK" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ygE-8J-QAq">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -117,6 +126,7 @@
                         <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="4Ih-a6-JaB"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wA0-AK-fSE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="316" y="228"/>
         </scene>
