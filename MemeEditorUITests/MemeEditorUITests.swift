@@ -31,7 +31,7 @@ class MemeEditorUITests: XCTestCase {
     func testExample() {
         // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-        
+        XCUIDevice.sharedDevice().orientation = .Portrait
         
         let app = XCUIApplication()
         let imageGalleryButton = app.toolbars.buttons["Image Gallery"]
@@ -41,20 +41,18 @@ class MemeEditorUITests: XCTestCase {
         cameraRollButton.tap()
         
         let photosgridviewCollectionView = app.collectionViews["PhotosGridView"]
-        photosgridviewCollectionView.cells["Photo, Landscape, August 08, 2012, 11:52 AM"].tap()
+        photosgridviewCollectionView.cells["Photo, Landscape, August 08, 2012, 2:55 PM"].tap()
         XCUIDevice.sharedDevice().orientation = .LandscapeRight
         
         let topTextField = app.textFields["TOP"]
         topTextField.tap()
         topTextField.tap()
-        topTextField.typeText("Hello");
         app.textFields["TOP"]
         
         let returnButton = app.buttons["Return"]
         returnButton.tap()
         app.typeText("\n")
         app.textFields["BOTTOM"].tap()
-        app.textFields["BOTTOM"].typeText("World");
         app.textFields["BOTTOM"]
         returnButton.tap()
         app.typeText("\n")
@@ -62,12 +60,13 @@ class MemeEditorUITests: XCTestCase {
         let titleNavigationBar = app.navigationBars["TItle"]
         titleNavigationBar.buttons["Share"].tap()
         app.sheets.collectionViews.collectionViews.buttons["Save Image"].tap()
-        titleNavigationBar.buttons["Cancel"].tap()
         imageGalleryButton.tap()
         cameraRollButton.tap()
-        photosgridviewCollectionView.cells["Photo, Landscape, 3:05 PM"].tap()
+        photosgridviewCollectionView.cells["Photo, Landscape, 2:13 PM"].tap()
+        titleNavigationBar.buttons["Cancel"].tap()
         
         
+    
     }
     
 }

@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MemeEditorViewController.swift
 //  MemeEditor
 //
 //  Created by Himanshu Pandey on 6/8/16.
@@ -111,21 +111,11 @@ class MemeEditorViewController: UIViewController,UIImagePickerControllerDelegate
             
         }
         presentViewController(imagePicker, animated: true, completion: nil)
-        shareButton.enabled = true
+        
         
         
     }
     
-   /* @IBAction func pickAmImageFromCamera(sender: AnyObject) {
-        
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
-        presentViewController(imagePicker, animated: true, completion: nil)
-        shareButton.enabled = true
-        
-    }
-    */
     
     
     @IBAction func cancel(sender: AnyObject) {
@@ -143,6 +133,7 @@ class MemeEditorViewController: UIViewController,UIImagePickerControllerDelegate
         
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imagePickerView.image = image
+            shareButton.enabled = true
         }
         dismissViewControllerAnimated(true, completion: nil)
     }
@@ -151,7 +142,7 @@ class MemeEditorViewController: UIViewController,UIImagePickerControllerDelegate
     func keyboardWillSHow(notification : NSNotification)
     {
         if(bottomTextField.editing){
-             view.frame.origin.y -= getKeyboardHeight(notification)
+             view.frame.origin.y = getKeyboardHeight(notification) * (-1)
         }
        
         
